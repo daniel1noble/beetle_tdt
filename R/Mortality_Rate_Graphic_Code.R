@@ -1,16 +1,11 @@
 # Install packages and load libraries
 
-install.packages("dplyr")
-install.packages("readxl")  # For reading Excel files
-install.packages("ggplot2") # For creating bar graphs
-install.packages("tidyr")
+install.packages("pacman")  # For package management
+pacman::p_load(readxl, dplyr, ggplot2, tidyr)
 
-library(readxl)  # For reading .xlsx files
-library(dplyr)
-library(ggplot2)
-library(tidyr)
+# Load data
 
-data <- read_excel("/Users/garrettball/Documents/GitHub/beetle_tdt/data/data_mockup.xlsx", sheet = 2)
+data <- read_excel("./data/data_mockup.xlsx", sheet = 2)
 
 
 ##BE CAREFUL## the code directly beneath this only necessary to be run ONCE, to remove the two data inserts that are unfinished *surely there is a better way to do this*
@@ -43,7 +38,7 @@ mortality_data <- data_long %>%
 # Bar graph
 ggplot(mortality_data, aes(x = Temp, y = mortality_rate, fill = time)) +
   geom_bar(stat = "identity", position = "dodge") +  # Bar graph for mortality rate
-  labs(title = "Mortality Rate of Soldier Beetles at Different Temperatures and Exposure Times",
+  labs(title = "Mortality Rate of Flour Beetles at Different Temperatures and Exposure Times",
        x = "Temperature (°C)",
        y = "Mortality Rate",
        fill = "Exposure Time") +
